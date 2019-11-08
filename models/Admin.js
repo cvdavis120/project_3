@@ -1,17 +1,23 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
+const AdminSchema = new Schema({
+  adminID: {
+    type: Schema.Types.ObjectId,
+    unique: true
+  },
+  super: { type: Boolean, required: true },
   username: { type: String, required: true, index: { unique: true } },
   password: { type: String, required: true },
+  workSpace: { type: String },
   profile: {
     firstName: { type: String },
     lastName: { type: String },
     email: { type: String }
   },
-  date: { type: Date, default: Date.now }
+  dateJoined: { type: Date, default: Date.now }
 });
 
-const User = mongoose.model("user", UserSchema);
+const Admin = mongoose.model("admin", AdminSchema);
 
-module.exports = User;
+module.exports = Admin;

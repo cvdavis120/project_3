@@ -18,6 +18,6 @@ const AdminSchema = new Schema({
   dateJoined: { type: Date, default: Date.now }
 });
 
-const Admin = mongoose.model("admin", AdminSchema);
+const Admin = mongoose.model("Admin", AdminSchema);
 
 module.exports = Admin;

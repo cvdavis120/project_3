@@ -6,6 +6,12 @@ function Nav() {
       <a className="navbar-brand" href="/">
         Bookity Booker
       </a>
+      <a className="navbar-brand" href="/newuser">
+        New User
+      </a>
+      <a className="navbar-brand" href="/newworkspace">
+        New Workspace
+      </a>
     </nav>
   );
 }

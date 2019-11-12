@@ -4,7 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
-server/config/keys.js
+keys.js
 server/node_modules
 # testing
 /coverage

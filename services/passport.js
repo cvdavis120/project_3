@@ -41,10 +41,10 @@ passport.use(
           //we don't have a user record with this ID, make a new record. this creates a new model instance, we then save that instance and in the callback we get another model instance, both represent the same record inside of our collection, by convention we always make use of the one provided to us inside of the promise callback
           new User({
             googleId: profile.id,
-            personsName: profile.displayName
-            // firstName: profile.name.familyName,
-            // lastName: profile.name.givenName,
-            // email: profile.emails.value
+            fullName: profile.displayName,
+            firstName: profile.name.familyName,
+            lastName: profile.name.givenName,
+            email: profile.emails[0].value
           })
             //we don't want to call done until we know for a fact that a user has been saved to database
             .save()

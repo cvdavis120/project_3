@@ -8,6 +8,7 @@ import Nav from "./components/Nav";
 import AdminMain from "./pages/AdminMain";
 import EmployeeMain from "./pages/EmployeeMain";
 import ClientMain from "./pages/UserMain";
+import Retail from "./pages/Retail";
 function App() {
   return (
     <div className="App">
@@ -21,6 +22,7 @@ function App() {
             <Route exact path="/employee" component={EmployeeMain} />
             <Route exact path="/newuser" component={NewUser} />
             <Route exact path="/newworkspace" component={NewWorkspace} />
+            <Route exact path="/retail" component={Retail} />
             <Route exact path="/login" component={Login} />
           </>
         </Switch>

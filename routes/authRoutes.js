@@ -9,7 +9,7 @@ module.exports = app => {
       scope: ["profile", "email"]
     })
   )
-  console.log("this is running");
+
 
 
   //handles the case where user visits auth/google/callback. turn the code into an actual profile. exchange the code for the user profile

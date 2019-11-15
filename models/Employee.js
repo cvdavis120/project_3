@@ -1,17 +1,15 @@
-//create a mongoose model class
 const mongoose = require("mongoose")
-
+const type = ""
 const { Schema } = mongoose;
 
-const UserSchema = new Schema({
+const EmployeeSchema = new Schema({
 
   fullName: String,
   firstName: String,
   lastName: String,
   email: String,
-  account_type: String
-
+  accountType: String
 
 })
 
-mongoose.model("users", UserSchema)
+mongoose.model("employee", EmployeeSchema)

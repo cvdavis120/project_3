@@ -7,6 +7,8 @@ router.route("/").get(loginController.findAll);
 // Matches /api/newuser
 router.route("/newuser").post(loginController.newUser);
 
-// Matches with "/api/login/:id"
+// Matches with "/api/admin/:id"
+// router.route("/admin").post(loginController.findById);
+
 
 module.exports = router;

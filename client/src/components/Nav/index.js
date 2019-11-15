@@ -4,13 +4,22 @@ function Nav() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <a className="navbar-brand" href="/">
-        Bookity Booker
+        Bookity Bookit
+      </a>
+      <a className="navbar-brand" href="/admin">
+        Admin Page
+      </a>
+      <a className="navbar-brand" href="/employee">
+        Employee Page
+      </a>
+      <a className="navbar-brand" href="/user">
+        User Page
       </a>
       <a className="navbar-brand" href="/newuser">
         New User
       </a>
-      <a className="navbar-brand" href="/newworkspace">
-        New Workspace
+      <a className="navbar-brand" href="/login">
+        Log in
       </a>
     </nav>
   );

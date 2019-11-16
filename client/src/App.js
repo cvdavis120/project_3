@@ -11,8 +11,7 @@ import ClientMain from "./pages/UserMain";
 import { Provider } from 'react-redux';
 import AppRouter from "./routers/AppRouter";
 import configureStore from './store/configureStore';
-
-
+import Retail from "./pages/Retail";
 
 function App() {
   return (
@@ -27,6 +26,7 @@ function App() {
             <Route exact path="/employee" component={EmployeeMain} />
             <Route exact path="/newuser" component={NewUser} />
             <Route exact path="/newworkspace" component={NewWorkspace} />
+            <Route exact path="/retail" component={Retail} />
             <Route exact path="/login" component={Login} />
           </>
         </Switch>

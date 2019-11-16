@@ -11,7 +11,12 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import weights from "../images/weights.jpg";
 import Copyright from "../components/Copyright/";
+// import googleBtn from "../components/GoogleBtn";
+import { GoogleLogin } from "react-google-login";
 
+const responseGoogle = response => {
+  console.log(response);
+};
 const useStyles = makeStyles(theme => ({
   root: {
     height: "100vh"
@@ -88,6 +93,14 @@ export default function SignInSide() {
             >
               Sign In
             </Button>
+            <GoogleLogin
+              clientId="527119401095-flf80nen6cgthtcso628cp0tg59tmcij.apps.googleusercontent.com"
+              buttonText="Login"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={"single_host_origin"}
+            />
+
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">

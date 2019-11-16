@@ -1,52 +1,30 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 // import Buttons from '../components/UserProfile'
-import Pricing from '../components/test'
+// import Pricing from '../components/test'
 class UserMain extends Component {
   constructor(props) {
     super(props);
-
   }
 
-  componentWillMount() {
+  componentWillMount() {}
 
-  }
+  componentDidMount() {}
 
-  componentDidMount() {
+  componentWillReceiveProps(nextProps) {}
 
-  }
+  shouldComponentUpdate(nextProps, nextState) {}
 
-  componentWillReceiveProps(nextProps) {
+  componentWillUpdate(nextProps, nextState) {}
 
-  }
+  componentDidUpdate(prevProps, prevState) {}
 
-  shouldComponentUpdate(nextProps, nextState) {
-
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-
-  }
-
-  componentWillUnmount() {
-
-  }
+  componentWillUnmount() {}
 
   render() {
-    return (
-      <div>
-        <Pricing />
-
-      </div>
-    );
+    return <div>{/* <Pricing /> */}</div>;
   }
 }
 
-UserMain.propTypes = {
-
-};
+UserMain.propTypes = {};
 
 export default UserMain;

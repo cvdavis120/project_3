@@ -18,6 +18,9 @@ function Nav() {
       <a className="navbar-brand" href="/newuser">
         New User
       </a>
+      <a className="navbar-brand" href="/retail">
+        Retail
+      </a>
       <a className="navbar-brand" href="/login">
         Log in
       </a>

@@ -6,13 +6,17 @@ import AppRouter from "./routers/AppRouter";
 import App from "./App";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Divider } from "@material-ui/core";
 
 const store = configureStore();
 
 const jsx = (
-    // <Provider store={store}>
-    <AppRouter />
-  // </Provider>
+  
+    <Provider store={store}>
+      <AppRouter />
+    </Provider>
+
+    
 );
   
 

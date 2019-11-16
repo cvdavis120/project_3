@@ -8,6 +8,9 @@ import Nav from "./components/Nav";
 import AdminMain from "./pages/AdminMain";
 import EmployeeMain from "./pages/EmployeeMain";
 import ClientMain from "./pages/UserMain";
+import { Provider } from 'react-redux';
+import AppRouter from "./routers/AppRouter";
+import configureStore from './store/configureStore';
 
 
 

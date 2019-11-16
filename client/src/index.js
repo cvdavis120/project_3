@@ -1,7 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import configureStore from './store/configureStore';
+import { Provider } from 'react-redux';
+import AppRouter from "./routers/AppRouter";
 import App from "./App";
+import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const store = configureStore();
+
+const jsx = (
+    // <Provider store={store}>
+    <AppRouter />
+  // </Provider>
+);
+  
+
+
+ReactDOM.render(jsx, document.getElementById("root"));

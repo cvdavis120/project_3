@@ -1,6 +1,6 @@
-import { createStore, combineReducers } from 'redux';
-import appointmentsReducer from '../reducers/appointments';
-import trainerAvailabilityReducer from '../reducers/trainerAvailability';
+import { createStore, combineReducers } from "redux";
+import appointmentsReducer from "../reducers/appointments";
+import trainerAvailabilityReducer from "../reducers/trainerAvailability";
 
 export default () => {
   const store = createStore(

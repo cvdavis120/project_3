@@ -4,6 +4,8 @@ import ProfileCard from "../components/UserPhoto";
 import Navbar from "../components/Nav/admin.js";
 import CustDropdown from "../components/CustDropdown";
 import Retail from "../components/Retail";
+import MainCalendar from "../components/MainCalendar/MainCalendar"
+
 class AdminMain extends Component {
   render() {
     return (
@@ -16,6 +18,7 @@ class AdminMain extends Component {
           </Grid>
           <Grid item xs={12} sm={6}>
             This is where the calendar is going
+            <MainCalendar />
           </Grid>
           <Grid item xs={12} sm={3}>
             This is where 'sales' items and checkout are going <Retail />

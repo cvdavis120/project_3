@@ -7,15 +7,9 @@ import App from "./App";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Divider } from "@material-ui/core";
-import store from "./store/configureStore";
 
-// const jsx = (
-//   <Provider store={configureStore}>
-//     <AppRouter />
-//   </Provider>
-// );
+const store = configureStore();
 
-// ReactDOM.render(jsx, document.getElementById("root"));
 ReactDOM.render(
   <Provider store={store}>
     <AppRouter />

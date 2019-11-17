@@ -1,4 +1,5 @@
 import * as React from "react";
+import { connect } from 'react-redux';
 import Paper from "@material-ui/core/Paper";
 import {
   ViewState,
@@ -96,11 +97,11 @@ const Content = withStyles(style, { name: 'Content' })(({
 
 
 
-export default class MainCalendar extends React.PureComponent {
+class MainCalendar extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      data: appointments,
+      data: this.props.appointments,
       // currentDate: '2018-06-27'
       currentDate: new Date()
     };
@@ -165,3 +166,12 @@ export default class MainCalendar extends React.PureComponent {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    appointments: state.appointments
+  }
+  
+}
+
+export default connect(mapStateToProps)(MainCalendar);

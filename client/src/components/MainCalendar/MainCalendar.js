@@ -1,5 +1,6 @@
 import * as React from "react";
 import { connect } from 'react-redux';
+import { addAppointment } from "../../actions/appointments"
 import Paper from "@material-ui/core/Paper";
 import {
   ViewState,
@@ -119,6 +120,7 @@ class MainCalendar extends React.PureComponent {
         const startingAddedId =
           data.length > 0 ? data[data.length - 1].id + 1 : 0;
         data = [...data, { id: startingAddedId, ...added }];
+        this.props.dispatch(addAppointment(data[startingAddedId -1]))
       }
       if (changed) {
         data = data.map(appointment =>

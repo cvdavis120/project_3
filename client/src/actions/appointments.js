@@ -17,7 +17,7 @@ export const addAppointment = (
   }
 });
 
-export const deleteAppointment = ({ id } = {}) => ({
+export const deleteAppointment = ( id = '') => ({
   type: 'DELETE_APPOINTMENT',
   id
 });

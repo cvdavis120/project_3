@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from 'react-redux';
-import { addAppointment } from "../../actions/appointments"
+import { addAppointment, deleteAppointment } from "../../actions/appointments"
 import Paper from "@material-ui/core/Paper";
 import {
   ViewState,
@@ -128,9 +128,12 @@ class MainCalendar extends React.PureComponent {
             ? { ...appointment, ...changed[appointment.id] }
             : appointment
         );
+        console.log(changed)
       }
       if (deleted !== undefined) {
         data = data.filter(appointment => appointment.id !== deleted);
+        console.log('deleted:' + deleted)
+        this.props.dispatch(deleteAppointment(deleted))
       }
       return { data };
     });
@@ -157,8 +160,8 @@ class MainCalendar extends React.PureComponent {
           <TodayButton />
           <Appointments />
           <AppointmentTooltip
-            // showOpenButton
-            showDeleteButton={false}
+            showOpenButton
+            showDeleteButton={true}
             contentComponent={Content}
           >
           </AppointmentTooltip>

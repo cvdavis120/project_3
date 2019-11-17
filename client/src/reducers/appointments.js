@@ -18,7 +18,7 @@ const appointmentsReducerDefaultState = [
   id: 3,
   startDate: "2019-11-15 7:00",
   endDate: "2019-11-15 7:30",
-  title: "Grocery Store"
+  title: "Groceryies Store"
 },
 {
   id: 4,
@@ -31,11 +31,24 @@ const appointmentsReducerDefaultState = [
 
 export default (state = appointmentsReducerDefaultState, action) => {
   switch (action.type) {
-    case 'Test':
+    case 'ADD_APPOINTMENT':
       return [
         ...state,
         action.appointment
       ];
+    case 'DELETE_APPOINTMENT':
+      return state.filter(({id}) => id !== action.id);
+    case 'EDIT_APPOINTMENT':
+      return state.map((appointment) => {
+        if (appointment.id === action.id) {
+          return {
+            ...appointment,
+            ...action.updates
+          };
+        } else {
+          return appointment;
+        };
+      });
     default: 
       return state;
   }

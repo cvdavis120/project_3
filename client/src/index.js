@@ -10,6 +10,12 @@ import { Divider } from "@material-ui/core";
 
 const store = configureStore();
 
+const log = () => {
+  console.log(store.getState())
+}
+store.subscribe(log)
+
+
 ReactDOM.render(
   <Provider store={store}>
     <AppRouter />

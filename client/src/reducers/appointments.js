@@ -16,8 +16,8 @@ const appointmentsReducerDefaultState = [
 },
 {
   id: 3,
-  startDate: "2019-11-15 7:00",
-  endDate: "2019-11-15 7:30",
+  startDate: "2019-11-22 7:00",
+  endDate: "2019-11-22 7:30",
   title: "Groceryies Store"
 },
 {

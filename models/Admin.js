@@ -1,21 +1,27 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
 const AdminSchema = new Schema({
-
   fullName: String,
   firstName: String,
   lastName: String,
   email: String,
-  account_type: String
+  account_type: String,
+  googleID: {
+    type: Schema.Types.ObjectId,
+    unique: true
+  },
+  super: { type: Boolean, required: true },
+  username: { type: String, required: true, index: { unique: true } },
+  password: { type: String, required: true },
+  workSpace: { type: String },
+  dateJoined: { type: Date, default: Date.now }
+});
 
+const Admin = mongoose.model("admin", AdminSchema);
 
-})
-
-mongoose.model("admin", AdminSchema)
-
-
+module.exports = Admin;
 
 // const mongoose = require("mongoose");
 // const Schema = mongoose.Schema;
@@ -37,6 +43,6 @@ mongoose.model("admin", AdminSchema)
 //   dateJoined: { type: Date, default: Date.now }
 // });
 
-// const Admin = mongoose.model("Admin", AdminSchema);
+// const Admin = mongoose.model("admin", AdminSchema);
 
 // module.exports = Admin;

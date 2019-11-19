@@ -6,9 +6,8 @@ const keys = require("../server/config/keys");
 //fetch out of mongoose. 1 argument means we are trying to fetch, 2 arguments means we are trying to load something into mongoose
 //this user object is our model class
 const User = mongoose.model("users");
-// const Admin = mongoose.model("admin");
+const Admin = mongoose.model("admin");
 // const Employee = mongoose.model("employee");
-
 
 //user is what we get out of the database, take that model and generate a piece of identifying information from it and return from this function and will be used by passport to set up cookie for us.
 passport.serializeUser((user, done) => {

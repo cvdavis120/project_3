@@ -3,7 +3,9 @@ const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const keys = require("./server/config/keys.js");
+
 require("./models/Users");
+require("./models/Admin");
 require("./services/passport");
 
 //pass into the function the address of the mongo instance
@@ -34,9 +36,6 @@ require("./routes/authRoutes")(app);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT);
-
-
-
 
 // const express = require("express");
 

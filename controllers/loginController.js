@@ -1,4 +1,4 @@
-const db = require("../models/Admin");
+const db = require("../models");
 // Defining methods for the UsersController
 
 module.exports = {
@@ -24,8 +24,9 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  newUser: function(req, res) {
-    db.User.create(req.body)
+  newAdmin: function(req, res) {
+    console.log(req.body);
+    db.Admin.create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

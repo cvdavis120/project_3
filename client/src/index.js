@@ -15,7 +15,9 @@ console.log(store.getState());
 const log = () => {
   console.log(store.getState())
 }
+log()
 store.subscribe(log)
+
 
 
 ReactDOM.render(

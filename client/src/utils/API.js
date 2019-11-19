@@ -2,12 +2,12 @@ import axios from "axios";
 
 export default {
   // Gets user login page
-  userLogin: function() {
-    return axios.get("/api/login");
+  userLogin: function(userData) {
+    return axios.get("/api/login", userData);
   },
 
   //adds new user to db
-  newUser: function(userData) {
-    return axios.post("/api/newuser", userData);
+  adminSignUp: function(userData) {
+    return axios.post("/api/login/newadmin", userData);
   }
 };

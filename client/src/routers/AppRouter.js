@@ -8,6 +8,8 @@ import Nav from "../components/Nav";
 import AdminMain from "../pages/AdminMain";
 import EmployeeMain from "../pages/EmployeeMain";
 import ClientMain from "../pages/UserMain";
+import EditAppointmentPage from "../pages/EditAppointmentPage";
+
 
 const AppRouter = () => (
   <BrowserRouter>
@@ -21,7 +23,7 @@ const AppRouter = () => (
         <Route exact path="/newuser" component={NewUser} />
         <Route exact path="/newworkspace" component={NewWorkspace} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/book/:id" component={Login} />
+        <Route exact path="/editappointment/:id" component={EditAppointmentPage} /> 
       </Switch>
     </div>
   </BrowserRouter>

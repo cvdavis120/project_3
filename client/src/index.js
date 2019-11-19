@@ -10,10 +10,14 @@ import { Divider } from "@material-ui/core";
 
 const store = configureStore();
 
+console.log(store.getState());
+
 const log = () => {
   console.log(store.getState())
 }
+log()
 store.subscribe(log)
+
 
 
 ReactDOM.render(

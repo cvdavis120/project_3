@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from 'react-redux';
-import { addAppointment } from "../../actions/appointments"
+import { addAppointment, deleteAppointment } from "../../actions/appointments"
 import Paper from "@material-ui/core/Paper";
 import {
   ViewState,
@@ -21,45 +21,7 @@ import {
   ConfirmationDialog
 } from "@devexpress/dx-react-scheduler-material-ui";
 import { withStyles } from '@material-ui/core/styles';
-
-
-//Dummy Data
-const brianAvailable = [
-  {
-    id: 1,
-    startDate: "2019-11-15 10:00",
-    endDate: "2019-11-15 11:00",
-    title: "Available"
-  }
-];
-
-const appointments = [
-  {
-    id: 1,
-    startDate: "2019-10-31 10:00",
-    endDate: "2019-10-31 11:00",
-    title: "Meeting"
-  },
-  {
-    id: 2,
-    startDate: "2019-11-01 18:00",
-    endDate: "2019-11-01 19:30",
-    title: "Go to a gym"
-  },
-  {
-    id: 3,
-    startDate: "2019-11-15 7:00",
-    endDate: "2019-11-15 7:30",
-    title: "Grocery Store"
-  },
-  {
-    id: 4,
-    startDate: "2019-11-16 8:00",
-    endDate: "2019-11-16 8:30",
-    title: "Hair Cut",
-    rRule: "FREQ=WEEKLY;COUNT=10"
-  }
-];
+import { Link } from 'react-router-dom';
 
 const style = ({ palette }) => ({
   icon: {
@@ -89,14 +51,15 @@ const style = ({ palette }) => ({
 const Content = withStyles(style, { name: 'Content' })(({
   children, appointmentData, classes, ...restProps
 }) => (
+  
   <AppointmentTooltip.Content {...restProps} appointmentData={appointmentData}>
         
-        <a href="www.google.com">Book this appointment with an id of: {appointmentData.id}</a>
+      <Link to={`/editappointment/${appointmentData.id}`}>
+        <h2>Book this appointment</h2>
+      </Link>
 
   </AppointmentTooltip.Content>
 ));
-
-
 
 class MainCalendar extends React.PureComponent {
   constructor(props) {
@@ -108,6 +71,7 @@ class MainCalendar extends React.PureComponent {
     };
 
     this.commitChanges = this.commitChanges.bind(this);
+    this.editAppointment = this.editAppointment.bind(this);
     this.currentDateChange = currentDate => {
       this.setState({ currentDate });
     };
@@ -120,7 +84,7 @@ class MainCalendar extends React.PureComponent {
         const startingAddedId =
           data.length > 0 ? data[data.length - 1].id + 1 : 0;
         data = [...data, { id: startingAddedId, ...added }];
-        this.props.dispatch(addAppointment(data[startingAddedId -1]))
+        this.props.dispatch(addAppointment(data[startingAddedId - 1]))
       }
       if (changed) {
         data = data.map(appointment =>
@@ -128,12 +92,20 @@ class MainCalendar extends React.PureComponent {
             ? { ...appointment, ...changed[appointment.id] }
             : appointment
         );
+        console.log(changed)
       }
       if (deleted !== undefined) {
         data = data.filter(appointment => appointment.id !== deleted);
+        console.log('deleted:' + deleted)
+        this.props.dispatch(deleteAppointment(deleted))
       }
       return { data };
     });
+  }
+
+  editAppointment(appointmentData){
+    // this.props.dispatch(editAppointment(id, rest))
+    console.log(appointmentData)
   }
 
   render() {
@@ -157,8 +129,8 @@ class MainCalendar extends React.PureComponent {
           <TodayButton />
           <Appointments />
           <AppointmentTooltip
-            // showOpenButton
-            showDeleteButton={false}
+            showOpenButton
+            showDeleteButton={true}
             contentComponent={Content}
           >
           </AppointmentTooltip>

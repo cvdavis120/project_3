@@ -8,10 +8,6 @@ const AdminSchema = new Schema({
   lastName: String,
   email: String,
   account_type: String,
-  googleID: {
-    type: String,
-    unique: true
-  },
   super: { type: Boolean },
   username: { type: String, index: { unique: true } },
   password: { type: String },

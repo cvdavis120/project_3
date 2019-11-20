@@ -1,6 +1,6 @@
 import * as React from "react";
-import { connect } from 'react-redux';
-import { addAppointment, deleteAppointment } from "../../actions/appointments"
+import { connect } from "react-redux";
+import { addAppointment, deleteAppointment } from "../../actions/appointments";
 import Paper from "@material-ui/core/Paper";
 import {
   ViewState,
@@ -20,46 +20,49 @@ import {
   AppointmentTooltip,
   ConfirmationDialog
 } from "@devexpress/dx-react-scheduler-material-ui";
-import { withStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
+import { withStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 
 const style = ({ palette }) => ({
   icon: {
-    color: palette.action.active,
+    color: palette.action.active
   },
   textCenter: {
-    textAlign: 'center',
+    textAlign: "center"
   },
   firstRoom: {
-    background: 'url(https://js.devexpress.com/Demos/DXHotels/Content/Pictures/Lobby-4.jpg)',
+    background:
+      "url(https://js.devexpress.com/Demos/DXHotels/Content/Pictures/Lobby-4.jpg)"
   },
   secondRoom: {
-    background: 'url(https://js.devexpress.com/Demos/DXHotels/Content/Pictures/MeetingRoom-4.jpg)',
+    background:
+      "url(https://js.devexpress.com/Demos/DXHotels/Content/Pictures/MeetingRoom-4.jpg)"
   },
   thirdRoom: {
-    background: 'url(https://js.devexpress.com/Demos/DXHotels/Content/Pictures/MeetingRoom-0.jpg)',
+    background:
+      "url(https://js.devexpress.com/Demos/DXHotels/Content/Pictures/MeetingRoom-0.jpg)"
   },
   header: {
-    height: '260px',
-    backgroundSize: 'cover',
+    height: "260px",
+    backgroundSize: "cover"
   },
   commandButton: {
-    backgroundColor: 'rgba(255,255,255,0.65)',
-  },
+    backgroundColor: "rgba(255,255,255,0.65)"
+  }
 });
 
-const Content = withStyles(style, { name: 'Content' })(({
-  children, appointmentData, classes, ...restProps
-}) => (
-  
-  <AppointmentTooltip.Content {...restProps} appointmentData={appointmentData}>
-        
+const Content = withStyles(style, { name: "Content" })(
+  ({ children, appointmentData, classes, ...restProps }) => (
+    <AppointmentTooltip.Content
+      {...restProps}
+      appointmentData={appointmentData}
+    >
       <Link to={`/editappointment/${appointmentData.id}`}>
         <h2>Book this appointment</h2>
       </Link>
-
-  </AppointmentTooltip.Content>
-));
+    </AppointmentTooltip.Content>
+  )
+);
 
 class MainCalendar extends React.PureComponent {
   constructor(props) {
@@ -84,7 +87,7 @@ class MainCalendar extends React.PureComponent {
         const startingAddedId =
           data.length > 0 ? data[data.length - 1].id + 1 : 0;
         data = [...data, { id: startingAddedId, ...added }];
-        this.props.dispatch(addAppointment(data[startingAddedId - 1]))
+        this.props.dispatch(addAppointment(data[startingAddedId - 1]));
       }
       if (changed) {
         data = data.map(appointment =>
@@ -92,20 +95,20 @@ class MainCalendar extends React.PureComponent {
             ? { ...appointment, ...changed[appointment.id] }
             : appointment
         );
-        console.log(changed)
+        console.log(changed);
       }
       if (deleted !== undefined) {
         data = data.filter(appointment => appointment.id !== deleted);
-        console.log('deleted:' + deleted)
-        this.props.dispatch(deleteAppointment(deleted))
+        console.log("deleted:" + deleted);
+        this.props.dispatch(deleteAppointment(deleted));
       }
       return { data };
     });
   }
 
-  editAppointment(appointmentData){
+  editAppointment(appointmentData) {
     // this.props.dispatch(editAppointment(id, rest))
-    console.log(appointmentData)
+    console.log(appointmentData);
   }
 
   render() {
@@ -132,8 +135,7 @@ class MainCalendar extends React.PureComponent {
             showOpenButton
             showDeleteButton={true}
             contentComponent={Content}
-          >
-          </AppointmentTooltip>
+          ></AppointmentTooltip>
           <AppointmentForm />
         </Scheduler>
       </Paper>
@@ -141,11 +143,10 @@ class MainCalendar extends React.PureComponent {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     appointments: state.appointments
-  }
-  
-}
+  };
+};
 
 export default connect(mapStateToProps)(MainCalendar);

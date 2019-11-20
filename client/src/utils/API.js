@@ -8,6 +8,7 @@ export default {
 
   //adds new user to db
   adminSignUp: function(userData) {
+    console.log(userData);
     return axios.post("/api/login/newadmin", userData);
   }
 };

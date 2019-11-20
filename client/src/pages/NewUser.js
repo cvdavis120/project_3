@@ -33,7 +33,7 @@ class SignUp extends Component {
         password: this.state.password,
         account_type: this.state.account_type,
         firstName: this.state.firstName,
-        lastName: this.state.Lastname
+        lastName: this.state.lastName
       })
         .then(res => console.log("user signed-up"))
         .catch(err => console.log(err));

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { editAppointment} from '../actions/appointments';
+import EditAppointmentForm from '../components/EditAppointmentForm/EditAppointmentForm';
 import moment from 'moment'
 
 const EditAppointmentPage = (props) => {
@@ -13,10 +14,16 @@ const EditAppointmentPage = (props) => {
     <div>
       <p>{props.appointment.title}</p>
       <p>{time}</p>
-      <button onClick={() => {
-        props.dispatch(editAppointment(props.appointment.id, {title: 'Booked'}))
-        props.history.push('/admin')
-      }}>Book Appointment</button>
+      <EditAppointmentForm 
+        onSubmit={(appointment) => {
+          props.dispatch(editAppointment(props.appointment.id, appointment))
+          props.history.push('/admin')
+        }}
+      />
+
+
+
+        
       
     </div>
   )

@@ -57,10 +57,6 @@ class SignInSide extends Component {
       <>
         <InitialNav />
         <MyGrid>
-          <Grid item xs={false} sm={8} md={7} />
-          {/* <img src={weights} width="150" height="150" /> */}
-          <img src={weights} width="400" alt="weights placeholder" />
-
           <Grid
             item
             xs={12}

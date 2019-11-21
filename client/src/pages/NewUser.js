@@ -59,7 +59,15 @@ class SignUp extends Component {
           password: this.state.password,
           account_type: this.state.account_type,
           firstName: this.state.firstName,
-          lastName: this.state.lastName
+          lastName: this.state.lastName,
+          super: true,
+          workSpace: "",
+          dateJoined: "",
+          sessions: 0,
+          startingWeight: 0,
+          currentWeight: 0,
+          goalWeight: 0,
+          notes: "Notes go here"
         })
       );
 
@@ -69,7 +77,15 @@ class SignUp extends Component {
         password: this.state.password,
         account_type: this.state.account_type,
         firstName: this.state.firstName,
-        lastName: this.state.lastName
+        lastName: this.state.lastName,
+        super: true,
+        workSpace: "",
+        dateJoined: "",
+        sessions: 0,
+        startingWeight: 0,
+        currentWeight: 0,
+        goalWeight: 0,
+        notes: "Notes go here"
       })
         .then(res => {
           this.setState({ fireRedirect: true });

@@ -30,7 +30,10 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.json(err));
   },
+
+  logInUser: function (req, res) {
   logInUser: function(req, res) {
+ 
     console.log(req.body);
     // console.log("login user req data: ", req.body);
     db.Admin.findOne({ email: req.body.email })

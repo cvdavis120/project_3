@@ -15,8 +15,11 @@ import { MyContainer, MyPaper, MyForm } from "../components/Container";
 import store from "../store/configureStore";
 import adminProfile from "../reducers/adminProfile";
 import { addUser } from "../actions/adminInfo";
+
+
 import { handleLogIn } from "../actions/loggedIn";
 import InitialNav from "../components/Nav/index";
+
 
 // someAsyncCall().then(function (response) {
 //   store.dispatch(someActionCreator(response));
@@ -59,7 +62,19 @@ class SignUp extends Component {
           password: this.state.password,
           account_type: this.state.account_type,
           firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          super: true,
+          workSpace: "",
+          dateJoined: "",
+          sessions: 0,
+          startingWeight: 0,
+          currentWeight: 0,
+          goalWeight: 0,
+          notes: "Notes go here"
+
+
           lastName: this.state.lastName
+
         })
       );
 
@@ -69,8 +84,18 @@ class SignUp extends Component {
         password: this.state.password,
         account_type: this.state.account_type,
         firstName: this.state.firstName,
-        lastName: this.state.lastName
+        lastName: this.state.lastName,
+        super: true,
+        workSpace: "",
+        dateJoined: "",
+        sessions: 0,
+        startingWeight: 0,
+        currentWeight: 0,
+        goalWeight: 0,
+        notes: "Notes go here"
+
       })
+        .then(res => this.setState({ fireRedirect: true }))
         .then(res => {
           this.setState({ fireRedirect: true });
         })
@@ -176,6 +201,49 @@ class SignUp extends Component {
                   </Link>
                 </Grid>
               </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  name="email"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  onChange={this.handleInputChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  name="password"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="password"
+                  label="Password"
+                  type="password"
+                  onChange={this.handleInputChange}
+                />
+              </Grid>
+            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              onClick={this.handleFormSubmitAdmin}
+            >
+              Sign Up
+            </Button>
+            {fireRedirect && <Redirect to={from || "/admin"} />}
+            <Grid container justify="flex-end">
+              <Grid item>
+                <Link href="/login" variant="body2">
+                  Already have an account? Sign in
+                </Link>
+              </Grid>
+            </Grid>
+          </MyForm>
+        </MyPaper>
             </MyForm>
           </MyPaper>
 

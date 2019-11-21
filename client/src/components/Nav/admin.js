@@ -1,6 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
+import { handleLogOut } from "../../actions/loggedIn";
 
-const admin = () => {
+const logOut = event => {
+  this.props.dispatch(handleLogOut());
+};
+
+const AdminNav = () => {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -16,7 +22,7 @@ const admin = () => {
         <a className="navbar-brand" href="/newuser">
           New User
         </a>
-        <a className="navbar-brand" href="/">
+        <a className="navbar-brand" href="/" onClick={logOut}>
           Log out - needs correct routing
         </a>
       </nav>
@@ -24,4 +30,4 @@ const admin = () => {
   );
 };
 
-export default admin;
+export default AdminNav;

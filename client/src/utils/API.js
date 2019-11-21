@@ -3,7 +3,8 @@ import axios from "axios";
 export default {
   // Gets user login page
   userLogin: function(userData) {
-    return axios.get("/api/login", userData);
+    console.log(userData);
+    return axios.post("/api/login/checkLoggedIn", userData);
   },
 
   //adds new user to db

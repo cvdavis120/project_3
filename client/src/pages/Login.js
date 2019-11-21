@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -8,7 +9,6 @@ import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import weights from "../images/weights.jpg";
 import Copyright from "../components/Copyright/";
 // import googleBtn from "../components/GoogleBtn";
@@ -23,7 +23,8 @@ const responseGoogle = response => {
 class SignInSide extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    fireRedirect: false
   };
 
   componentDidMount() {
@@ -37,7 +38,7 @@ class SignInSide extends Component {
         username: this.state.username,
         password: this.state.password
       })
-        .then(res => console.log("user login"))
+        .then(res => this.setState({ fireRedirect: true }))
         .catch(err => console.log(err));
     }
   };
@@ -49,6 +50,8 @@ class SignInSide extends Component {
   };
 
   render() {
+    const { from } = this.props.location.state || "/";
+    const { fireRedirect } = this.state;
     return (
       <MyGrid>
         <Grid item xs={false} sm={8} md={7} />
@@ -100,6 +103,7 @@ class SignInSide extends Component {
               >
                 Sign In
               </Button>
+              {fireRedirect && <Redirect to={from || "/admin"} />}
               <GoogleLogin
                 clientId="527119401095-flf80nen6cgthtcso628cp0tg59tmcij.apps.googleusercontent.com"
                 buttonText="Login"

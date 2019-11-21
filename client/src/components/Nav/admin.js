@@ -16,7 +16,7 @@ const admin = () => {
         <a className="navbar-brand" href="/newuser">
           New User
         </a>
-        <a className="navbar-brand" href="/logout">
+        <a className="navbar-brand" href="/">
           Log out - needs correct routing
         </a>
       </nav>

@@ -5,6 +5,9 @@ const loginController = require("../../controllers/loginController");
 router.route("/").get(loginController.logInUser);
 // router.route("/").get(loginController.findAll);
 
+// Matches with "/api/login/checkLoggedIn"
+router.route("/checkLoggedIn").get(loginController.logInUser);
+
 // Matches /api/login/newadmin
 router.route("/newadmin").post(loginController.newAdmin);
 

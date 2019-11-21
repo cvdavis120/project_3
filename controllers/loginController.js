@@ -31,7 +31,6 @@ module.exports = {
       .catch(err => res.json(err));
   },
   logInUser: function (req, res) {
-    db.Admin.findOne({ username: req.params.username })
       .then(data => res.json(data))
       .catch(err => res.status(422).json(err));
   }

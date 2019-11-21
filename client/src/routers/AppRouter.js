@@ -1,20 +1,17 @@
-import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "../App.css";
 import Login from "../pages/Login";
 import NewUser from "../pages/NewUser";
 import NewWorkspace from "../pages/NewWorkspace";
-import Nav from "../components/Nav";
 import AdminMain from "../pages/AdminMain";
 import EmployeeMain from "../pages/EmployeeMain";
 import ClientMain from "../pages/UserMain";
 import EditAppointmentPage from "../pages/EditAppointmentPage";
 
-
 const AppRouter = () => (
   <BrowserRouter>
     <div className="App">
-      <Nav />
       <Switch>
         <Route exact path="/" component={Login} />
         <Route exact path="/admin" component={AdminMain} />
@@ -23,7 +20,11 @@ const AppRouter = () => (
         <Route exact path="/newuser" component={NewUser} />
         <Route exact path="/newworkspace" component={NewWorkspace} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/editappointment/:id" component={EditAppointmentPage} /> 
+        <Route
+          exact
+          path="/editappointment/:id"
+          component={EditAppointmentPage}
+        />
       </Switch>
     </div>
   </BrowserRouter>

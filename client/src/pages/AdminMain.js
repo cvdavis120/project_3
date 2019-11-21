@@ -16,8 +16,8 @@ class AdminMain extends Component {
     this.state = {
 
     };
-    console.log("admin main store: ", { store });
-    console.log("admin main component: ", { Component });
+    // console.log("admin main store: ", { store });
+    // console.log("admin main component: ", { Component });
 
   }
   render() {
@@ -29,7 +29,16 @@ class AdminMain extends Component {
           <Grid item xs={12} sm={3}>
             <CustDropdown />
             <ProfileCard
-              firstName={this.props.adminProfile.firstName} />
+
+              userImage={this.props.adminProfile.userImage}
+              firstName={this.props.adminProfile.firstName}
+              lastName={this.props.adminProfile.lastName}
+              dateJoined={this.props.adminProfile.dateJoined}
+              startingWeight={this.props.adminProfile.startingWeight}
+              currentWeight={this.props.adminProfile.currentWeight}
+              goalWeight={this.props.adminProfile.goalWeight}
+              notes={this.props.adminProfile.notes}
+            />
           </Grid>
           <Grid item xs={12} sm={6}>
             <MainCalendar

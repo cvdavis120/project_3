@@ -1,51 +1,29 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
 
 class EmployeeMain extends Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
+  // }
 
-  }
+  componentWillMount() {}
 
-  componentWillMount() {
+  componentDidMount() {}
 
-  }
+  componentWillReceiveProps(nextProps) {}
 
-  componentDidMount() {
+  shouldComponentUpdate(nextProps, nextState) {}
 
-  }
+  componentWillUpdate(nextProps, nextState) {}
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps, prevState) {}
 
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-
-  }
-
-  componentWillUnmount() {
-
-  }
+  componentWillUnmount() {}
 
   render() {
-    return (
-      <div>
-        This is the employee page
-      </div>
-    );
+    return <div>This is the employee page</div>;
   }
 }
 
-EmployeeMain.propTypes = {
-
-};
+EmployeeMain.propTypes = {};
 
 export default EmployeeMain;

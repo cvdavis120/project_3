@@ -31,25 +31,28 @@ export default function ProfileCard(props) {
     <Card className={classes.card}>
       <CardActionArea>
         <Typography gutterBottom variant="h5" component="h2">
-
+          {props.firstName} {props.lastName}
         </Typography>
         <CardMedia
+          component="img"
+          alt={props.firstName + " " + props.lastName}
+          height="140"
           className={classes.media}
-          image="props.image" //from their google image
-          title="props.name?"
+          image="../images/avatar.jpg"
+          title={props.firstName + " " + props.lastName}
         />
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
-            Age: <br />
-            Member since:{props.firstName}
+            Age: <br /> {props.age}
+            Member since:{props.dateJoined}
             <br />
-            Starting Weight:
+            Starting Weight:{props.startingWeight}
             <br />
-            Curent Weight:
+            Curent Weight:{props.currentWeight}
             <br />
-            Goal Weight:
+            Goal Weight:{props.goalWeight}
             <br />
-            Notes:
+            Notes:{props.notes}
           </Typography>
         </CardContent>
       </CardActionArea>

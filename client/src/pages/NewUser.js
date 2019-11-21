@@ -1,29 +1,24 @@
 import React, { Component, useState } from "react";
-import Redux from 'redux'
-import { connect } from 'react-redux'
+import Redux from "redux";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
 import DropdownMenu from "../components/Dropdown";
 import Copyright from "../components/Copyright";
 import API from "../utils/API";
 import { MyContainer, MyPaper, MyForm } from "../components/Container";
-import store from "../store/configureStore"
+import store from "../store/configureStore";
 import adminProfile from "../reducers/adminProfile";
 import { addUser } from "../actions/adminInfo";
-
-
 
 // someAsyncCall().then(function (response) {
 //   store.dispatch(someActionCreator(response));
 // });
-
-
 
 class SignUp extends Component {
   constructor(props) {
@@ -33,13 +28,14 @@ class SignUp extends Component {
       password: "",
       account_type: "Admin",
       firstName: "",
-      lastName: ""
+      lastName: "",
+      fireRedirect: false
     };
   }
   componentDidMount() {
     console.log("props: ", this.props);
     // console.log("Page has loaded");
-    console.log("props.adminprofile: ", this.props.adminProfile)
+    console.log("props.adminprofile: ", this.props.adminProfile);
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -49,31 +45,52 @@ class SignUp extends Component {
   handleFormSubmitAdmin = event => {
     event.preventDefault();
 
-    if (this.state.email
-      && this.state.password
-      && this.state.firstName
-      && this.state.lastName) {
-
-      this.props.dispatch(addUser(
-        {
+    if (
+      this.state.email &&
+      this.state.password &&
+      this.state.firstName &&
+      this.state.lastName
+    ) {
+      this.props.dispatch(
+        addUser({
           email: this.state.email,
           password: this.state.password,
           account_type: this.state.account_type,
           firstName: this.state.firstName,
-          lastName: this.state.lastName
-        }
-      ))
+          lastName: this.state.lastName,
+          super: true,
+          workSpace: "",
+          dateJoined: "",
+          sessions: 0,
+          startingWeight: 0,
+          currentWeight: 0,
+          goalWeight: 0,
+          notes: "Notes go here"
+
+        })
+      );
 
       API.adminSignUp({
         email: this.state.email,
         password: this.state.password,
         account_type: this.state.account_type,
         firstName: this.state.firstName,
-        lastName: this.state.lastName
+        lastName: this.state.lastName,
+        super: true,
+        workSpace: "",
+        dateJoined: "",
+        sessions: 0,
+        startingWeight: 0,
+        currentWeight: 0,
+        goalWeight: 0,
+        notes: "Notes go here"
+
       })
-        .then(res => console.log("response.data", res.data))
+        .then(res => this.setState({ fireRedirect: true }))
         .catch(err => console.log(err));
-    } else { alert("You need to enter info to all fields") }
+    } else {
+      alert("You need to enter info to all fields");
+    }
   };
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -93,6 +110,8 @@ class SignUp extends Component {
   };
 
   render() {
+    const { from } = this.props.location.state || "/";
+    const { fireRedirect } = this.state;
     return (
       <MyContainer>
         <MyPaper>
@@ -160,6 +179,7 @@ class SignUp extends Component {
             >
               Sign Up
             </Button>
+            {fireRedirect && <Redirect to={from || "/admin"} />}
             <Grid container justify="flex-end">
               <Grid item>
                 <Link href="/login" variant="body2">
@@ -181,6 +201,6 @@ class SignUp extends Component {
 const mapStateToProps = (state, props) => {
   return {
     adminProfile: state.adminProfile
-  }
-}
-export default connect(mapStateToProps)(SignUp)
+  };
+};
+export default connect(mapStateToProps)(SignUp);

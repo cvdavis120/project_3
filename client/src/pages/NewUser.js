@@ -1,4 +1,6 @@
 import React, { Component, useState } from "react";
+import Redux from 'redux'
+import { connect } from 'react-redux'
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Link from "@material-ui/core/Link";
@@ -11,33 +13,67 @@ import DropdownMenu from "../components/Dropdown";
 import Copyright from "../components/Copyright";
 import API from "../utils/API";
 import { MyContainer, MyPaper, MyForm } from "../components/Container";
+import store from "../store/configureStore"
+import adminProfile from "../reducers/adminProfile";
+import { addUser } from "../actions/adminInfo";
+
+
+
+// someAsyncCall().then(function (response) {
+//   store.dispatch(someActionCreator(response));
+// });
+
+
 
 class SignUp extends Component {
-  state = {
-    account_type: "Admin",
-    email: "",
-    password: "",
-    firstName: "",
-    lastName: ""
-  };
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: "",
+      account_type: "Admin",
+      firstName: "",
+      lastName: ""
+    };
+  }
   componentDidMount() {
-    console.log("Page has loaded");
+    console.log("props: ", this.props);
+    // console.log("Page has loaded");
+    console.log("props.adminprofile: ", this.props.adminProfile)
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    // console.log("this.props.adminprofile: ", this.props.adminProfile);
   }
 
   handleFormSubmitAdmin = event => {
     event.preventDefault();
-    if (this.state.email && this.state.password) {
+
+    if (this.state.email
+      && this.state.password
+      && this.state.firstName
+      && this.state.lastName) {
+
+      this.props.dispatch(addUser(
+        {
+          email: this.state.email,
+          password: this.state.password,
+          account_type: this.state.account_type,
+          firstName: this.state.firstName,
+          lastName: this.state.lastName
+        }
+      ))
+
       API.adminSignUp({
         email: this.state.email,
         password: this.state.password,
         account_type: this.state.account_type,
         firstName: this.state.firstName,
-        lastName: this.state.Lastname
+        lastName: this.state.lastName
       })
-        .then(res => console.log("user signed-up"))
+        .then(res => console.log("response.data", res.data))
         .catch(err => console.log(err));
-    }
+    } else { alert("You need to enter info to all fields") }
   };
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -142,4 +178,9 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+const mapStateToProps = (state, props) => {
+  return {
+    adminProfile: state.adminProfile
+  }
+}
+export default connect(mapStateToProps)(SignUp)

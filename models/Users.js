@@ -5,12 +5,12 @@ const { Schema } = mongoose;
 
 const UserSchema = new Schema({
 
-  fullName: String,
+  email: String,
+  account_type: String,
   firstName: String,
   lastName: String,
-  email: String,
-  account_type: String
-
+  fullName: String,
+  dateJoined: String
 
 })
 

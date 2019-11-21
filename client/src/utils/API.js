@@ -11,5 +11,9 @@ export default {
   adminSignUp: function(userData) {
     console.log(userData);
     return axios.post("/api/login/newadmin", userData);
+  },
+
+  addEvent: function(eventData) {
+    return axios.post("/api/event/addevent", eventData);
   }
 };

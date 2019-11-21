@@ -15,6 +15,8 @@ import { MyContainer, MyPaper, MyForm } from "../components/Container";
 import store from "../store/configureStore";
 import adminProfile from "../reducers/adminProfile";
 import { addUser } from "../actions/adminInfo";
+import { handleLogIn } from "../actions/loggedIn";
+import InitialNav from "../components/Nav/index";
 
 // someAsyncCall().then(function (response) {
 //   store.dispatch(someActionCreator(response));
@@ -61,6 +63,7 @@ class SignUp extends Component {
         })
       );
 
+      this.props.dispatch(handleLogIn());
       API.adminSignUp({
         email: this.state.email,
         password: this.state.password,
@@ -68,7 +71,9 @@ class SignUp extends Component {
         firstName: this.state.firstName,
         lastName: this.state.lastName
       })
-        .then(res => this.setState({ fireRedirect: true }))
+        .then(res => {
+          this.setState({ fireRedirect: true });
+        })
         .catch(err => console.log(err));
     } else {
       alert("You need to enter info to all fields");
@@ -95,87 +100,90 @@ class SignUp extends Component {
     const { from } = this.props.location.state || "/";
     const { fireRedirect } = this.state;
     return (
-      <MyContainer>
-        <MyPaper>
-          <Typography component="h1" variant="h5">
-            Sign up
-          </Typography>
+      <>
+        <InitialNav />
+        <MyContainer>
+          <MyPaper>
+            <Typography component="h1" variant="h5">
+              Sign up
+            </Typography>
 
-          <MyForm>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <DropdownMenu setAccount={this.setAccountType} />
+            <MyForm>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <DropdownMenu setAccount={this.setAccountType} />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    name="firstName"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="firstName"
+                    label="First Name"
+                    onChange={this.handleInputChange}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    name="lastName"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="lastName"
+                    label="Last Name"
+                    onChange={this.handleInputChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    name="email"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    onChange={this.handleInputChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    name="password"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="password"
+                    label="Password"
+                    type="password"
+                    onChange={this.handleInputChange}
+                  />
+                </Grid>
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  name="firstName"
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  onChange={this.handleInputChange}
-                />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                onClick={this.handleFormSubmitAdmin}
+              >
+                Sign Up
+              </Button>
+              {fireRedirect && <Redirect to={from || "/admin"} />}
+              <Grid container justify="flex-end">
+                <Grid item>
+                  <Link href="/login" variant="body2">
+                    Already have an account? Sign in
+                  </Link>
+                </Grid>
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  name="lastName"
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  onChange={this.handleInputChange}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  name="email"
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  onChange={this.handleInputChange}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  name="password"
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="password"
-                  label="Password"
-                  type="password"
-                  onChange={this.handleInputChange}
-                />
-              </Grid>
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              onClick={this.handleFormSubmitAdmin}
-            >
-              Sign Up
-            </Button>
-            {fireRedirect && <Redirect to={from || "/admin"} />}
-            <Grid container justify="flex-end">
-              <Grid item>
-                <Link href="/login" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
-          </MyForm>
-        </MyPaper>
+            </MyForm>
+          </MyPaper>
 
-        <Box mt={5}>
-          <Copyright />
-        </Box>
-      </MyContainer>
+          <Box mt={5}>
+            <Copyright />
+          </Box>
+        </MyContainer>
+      </>
     );
   }
 }

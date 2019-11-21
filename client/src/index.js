@@ -13,12 +13,10 @@ const store = configureStore();
 console.log(store.getState());
 
 const log = () => {
-  console.log(store.getState())
-}
-log()
-store.subscribe(log)
-
-
+  console.log(store.getState());
+};
+log();
+store.subscribe(log);
 
 ReactDOM.render(
   <Provider store={store}>

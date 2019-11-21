@@ -15,6 +15,7 @@ import Copyright from "../components/Copyright/";
 import { GoogleLogin } from "react-google-login";
 import API from "../utils/API";
 import { MyPaperLogin, MyGrid, MyFormLogin } from "../components/Grid";
+import InitialNav from "../components/Nav/index";
 
 const responseGoogle = response => {
   console.log(response);
@@ -53,84 +54,95 @@ class SignInSide extends Component {
     const { from } = this.props.location.state || "/";
     const { fireRedirect } = this.state;
     return (
-      <MyGrid>
-        <Grid item xs={false} sm={8} md={7} />
-        {/* <img src={weights} width="150" height="150" /> */}
-        <img src={weights} width="400" alt="weights placeholder" />
+      <>
+        <InitialNav />
+        <MyGrid>
+          <Grid item xs={false} sm={8} md={7} />
+          {/* <img src={weights} width="150" height="150" /> */}
+          <img src={weights} width="400" alt="weights placeholder" />
 
-        <Grid item xs={12} sm={4} md={5} component={Paper} elevation={6} square>
-          <MyPaperLogin>
-            <Typography component="h1" variant="h5">
-              Sign in
-            </Typography>
-            <MyFormLogin>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                value={this.state.username}
-                onChange={this.handleInputChange}
-                name="username"
-                autoComplete="email"
-                autoFocus
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                value={this.state.password}
-                onChange={this.handleInputChange}
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                onClick={this.handleFormSubmit}
-              >
-                Sign In
-              </Button>
-              {fireRedirect && <Redirect to={from || "/admin"} />}
-              <GoogleLogin
-                clientId="527119401095-flf80nen6cgthtcso628cp0tg59tmcij.apps.googleusercontent.com"
-                buttonText="Login"
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
-                cookiePolicy={"single_host_origin"}
-              />
+          <Grid
+            item
+            xs={12}
+            sm={4}
+            md={5}
+            component={Paper}
+            elevation={6}
+            square
+          >
+            <MyPaperLogin>
+              <Typography component="h1" variant="h5">
+                Sign in
+              </Typography>
+              <MyFormLogin>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  value={this.state.username}
+                  onChange={this.handleInputChange}
+                  name="username"
+                  autoComplete="email"
+                  autoFocus
+                />
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  value={this.state.password}
+                  onChange={this.handleInputChange}
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                />
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" />}
+                  label="Remember me"
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  onClick={this.handleFormSubmit}
+                >
+                  Sign In
+                </Button>
+                {fireRedirect && <Redirect to={from || "/admin"} />}
+                <GoogleLogin
+                  clientId="527119401095-flf80nen6cgthtcso628cp0tg59tmcij.apps.googleusercontent.com"
+                  buttonText="Login"
+                  onSuccess={responseGoogle}
+                  onFailure={responseGoogle}
+                  cookiePolicy={"single_host_origin"}
+                />
 
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
+                <Grid container>
+                  <Grid item xs>
+                    <Link href="#" variant="body2">
+                      Forgot password?
+                    </Link>
+                  </Grid>
+                  <Grid item>
+                    <Link href="/newuser" variant="body2">
+                      {"Don't have an account? Sign Up"}
+                    </Link>
+                  </Grid>
                 </Grid>
-                <Grid item>
-                  <Link href="/newuser" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
-              <Box mt={5}>
-                <Copyright />
-              </Box>
-            </MyFormLogin>
-          </MyPaperLogin>
-        </Grid>
-      </MyGrid>
+                <Box mt={5}>
+                  <Copyright />
+                </Box>
+              </MyFormLogin>
+            </MyPaperLogin>
+          </Grid>
+        </MyGrid>
+      </>
     );
   }
 }

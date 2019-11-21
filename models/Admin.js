@@ -6,12 +6,8 @@ const AdminSchema = new Schema({
   fullName: String,
   firstName: String,
   lastName: String,
-  email: String,
+  email: { type: String, index: { unique: true } },
   account_type: String,
-  googleID: {
-    type: String,
-    unique: true
-  },
   super: { type: Boolean },
   username: { type: String, index: { unique: true } },
   password: { type: String },

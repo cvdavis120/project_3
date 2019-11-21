@@ -12,12 +12,7 @@ const AdminSchema = new Schema({
   username: { type: String, index: { unique: true } },
   password: { type: String },
   workSpace: { type: String },
-  dateJoined: { type: Date, default: Date.now },
-  sessions: 0,
-  startingWeight: 0,
-  currentWeight: 0,
-  goalWeight: 0,
-  notes: String
+  dateJoined: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model("admin", AdminSchema);

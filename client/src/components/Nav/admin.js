@@ -22,11 +22,7 @@ const AdminNav = () => {
         <a className="navbar-brand" href="/newuser">
           New User
         </a>
-
-        <a className="navbar-brand" href="/">
-
         <a className="navbar-brand" href="/" onClick={logOut}>
-
           Log out - needs correct routing
         </a>
       </nav>

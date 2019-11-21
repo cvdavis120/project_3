@@ -58,7 +58,7 @@ const Content = withStyles(style, { name: "Content" })(
       appointmentData={appointmentData}
     >
       <Link to={`/editappointment/${appointmentData.id}`}>
-        <h2>Book this appointment</h2>
+        <h2>Schedule appointment</h2>
       </Link>
     </AppointmentTooltip.Content>
   )
@@ -69,12 +69,10 @@ class MainCalendar extends React.PureComponent {
     super(props);
     this.state = {
       data: this.props.appointments,
-      // currentDate: '2018-06-27'
       currentDate: new Date()
     };
 
     this.commitChanges = this.commitChanges.bind(this);
-    this.editAppointment = this.editAppointment.bind(this);
     this.currentDateChange = currentDate => {
       this.setState({ currentDate });
     };
@@ -95,20 +93,13 @@ class MainCalendar extends React.PureComponent {
             ? { ...appointment, ...changed[appointment.id] }
             : appointment
         );
-        console.log(changed);
       }
       if (deleted !== undefined) {
         data = data.filter(appointment => appointment.id !== deleted);
-        console.log("deleted:" + deleted);
         this.props.dispatch(deleteAppointment(deleted));
       }
       return { data };
     });
-  }
-
-  editAppointment(appointmentData) {
-    // this.props.dispatch(editAppointment(id, rest))
-    console.log(appointmentData);
   }
 
   render() {

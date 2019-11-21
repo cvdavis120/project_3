@@ -20,11 +20,10 @@ const EditAppointmentPage = (props) => {
           props.history.push('/admin')
         }}
       />
-
-
-
-        
-      
+      <button onClick={() => {
+        props.dispatch(editAppointment(props.appointment.id, {title: 'Available'}))
+        props.history.push('/admin')
+      }}>Mark as Available</button>
     </div>
   )
 };

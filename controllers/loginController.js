@@ -31,9 +31,13 @@ module.exports = {
       .catch(err => res.json(err));
   },
   logInUser: function(req, res) {
-    console.log("login user req data: ", req.query.email);
-    db.Admin.findOne({ email: req.query.email })
-      .then(data => res.json(data))
+    console.log(req.body);
+    // console.log("login user req data: ", req.body);
+    db.Admin.findOne({ email: req.body.email })
+      .then(data => {
+        res.json(data);
+        console.log(data);
+      })
       .catch(err => res.status(422).json(err));
   }
 };

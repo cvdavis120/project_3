@@ -48,10 +48,22 @@ class SignUp extends Component {
 
   handleFormSubmitAdmin = event => {
     event.preventDefault();
+
     if (this.state.email
       && this.state.password
       && this.state.firstName
       && this.state.lastName) {
+
+      this.props.dispatch(addUser(
+        {
+          email: this.state.email,
+          password: this.state.password,
+          account_type: this.state.account_type,
+          firstName: this.state.firstName,
+          lastName: this.state.lastName
+        }
+      ))
+
       API.adminSignUp({
         email: this.state.email,
         password: this.state.password,
@@ -59,10 +71,6 @@ class SignUp extends Component {
         firstName: this.state.firstName,
         lastName: this.state.lastName
       })
-
-        .then(function (res) {
-          store.dispatch(addUser(res.data))
-        })
         .then(res => console.log("response.data", res.data))
         .catch(err => console.log(err));
     } else { alert("You need to enter info to all fields") }

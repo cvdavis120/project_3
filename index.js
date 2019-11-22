@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 require("./models/Users");
 require("./models/Admin");
 require("./services/passport");
-require("./models/Event")
+require("./models/Event");
 
 const app = express();
 //pass into the function the address of the mongo instance
@@ -30,7 +30,12 @@ app.use(
     keys: [keys.cookieKey]
   })
 );
-
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 //tell passport to use cookies to manage authentication
 app.use(passport.initialize());
 app.use(passport.session());
@@ -58,8 +63,7 @@ app.listen(PORT);
 
 // // Define middleware here
 // // Serve up static assets (usually on heroku)
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("client/build"));
+
 // }
 // // Add routes, both API and view
 

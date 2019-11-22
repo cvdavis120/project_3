@@ -5,22 +5,22 @@ class EmployeeMain extends Component {
   //   super(props);
   // }
 
-  componentWillMount() {}
+  componentWillMount() { }
 
-  componentDidMount() {}
+  componentDidMount() { }
 
-  componentWillReceiveProps(nextProps) {}
+  componentWillReceiveProps(nextProps) { }
 
-  shouldComponentUpdate(nextProps, nextState) {}
+  shouldComponentUpdate(nextProps, nextState) { }
 
-  componentWillUpdate(nextProps, nextState) {}
+  componentWillUpdate(nextProps, nextState) { }
 
-  componentDidUpdate(prevProps, prevState) {}
+  componentDidUpdate(prevProps, prevState) { }
 
-  componentWillUnmount() {}
+  componentWillUnmount() { }
 
   render() {
-    return <div>This is the employee page</div>;
+    return <div><h1>GET BACK TO WORK!</h1></div>;
   }
 }
 

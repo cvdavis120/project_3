@@ -9,7 +9,7 @@ const logOut = event => {
 const AdminNav = () => {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+      <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: '#faa552' }}>
         <a className="navbar-brand" href="/">
           Bookity Bookit
         </a>
@@ -23,7 +23,7 @@ const AdminNav = () => {
           New User
         </a>
         <a className="navbar-brand" href="/" onClick={logOut}>
-          Log out - needs correct routing
+          Log out
         </a>
       </nav>
     </div>

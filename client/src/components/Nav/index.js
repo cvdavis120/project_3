@@ -2,7 +2,7 @@ import React from "react";
 
 function InitialNav() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: '#faa552' }}>
       <a className="navbar-brand" href="/">
         Bookity Bookit
       </a>

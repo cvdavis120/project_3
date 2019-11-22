@@ -14,6 +14,13 @@ export default {
   },
 
   addEvent: function(eventData) {
+    console.log(eventData)
     return axios.post("/api/event/addevent", eventData);
+  },
+
+  getAllEvents: function(eventData) {
+    console.log(eventData)
+    return axios.get("/api/event/getallevents")
   }
+
 };

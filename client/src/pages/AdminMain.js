@@ -8,6 +8,10 @@ import { connect } from "react-redux";
 import { addAppointment } from "../actions/appointments";
 import AdminNav from "../components/Nav/admin";
 import store from "../store/configureStore";
+
+import API from "../utils/API"
+
+
 class AdminMain extends React.Component {
   constructor(props) {
     super(props);
@@ -15,6 +19,16 @@ class AdminMain extends React.Component {
     // console.log("admin main store: ", { store });
     // console.log("admin main component: ", { Component });
   }
+
+
+  componentDidMount() {
+    API.getAllEvents()
+    .then(res => {
+      return res
+    })
+  }
+
+
   render() {
     console.log("adminMain: state", this.state);
     return (

@@ -14,7 +14,7 @@ import Copyright from "../components/Copyright/";
 // import googleBtn from "../components/GoogleBtn";
 import { GoogleLogin } from "react-google-login";
 import API from "../utils/API";
-import { MyPaperLogin, MyGrid, MyFormLogin } from "../components/Grid";
+import { MyPaperLogin, MyGrid, MyFormLogin, MyImg } from "../components/Grid";
 import InitialNav from "../components/Nav/index";
 
 const responseGoogle = response => {
@@ -39,8 +39,16 @@ class SignInSide extends Component {
         username: this.state.username,
         password: this.state.password
       })
-        .then(res => this.setState({ fireRedirect: true }))
-        .catch(err => console.log(err));
+        .then(res => {
+          if (res != "bad") {
+            this.setState({ fireRedirect: true });
+          } else {
+            console.log("That doesn't work");
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   };
   handleInputChange = event => {
@@ -57,6 +65,8 @@ class SignInSide extends Component {
       <>
         <InitialNav />
         <MyGrid>
+          <Grid item xs={false} sm={8} md={7} />
+          <img src={weights} width="400" alt="weights placeholder" />
           <Grid
             item
             xs={12}

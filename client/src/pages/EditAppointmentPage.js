@@ -12,7 +12,7 @@ const EditAppointmentPage = props => {
   console.log("appointment: " + JSON.stringify(props.appointment));
 
   return (
-    <>
+    <div>
       <AdminNav />
       <div>
         <p>{props.appointment.title}</p>
@@ -28,7 +28,7 @@ const EditAppointmentPage = props => {
           Book Appointment
         </button>
       </div>
-    </>
+    </div>
   );
 };
 

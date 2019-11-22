@@ -11,4 +11,7 @@ module.exports = function(app) {
   app.use(
     proxy(["/api", "/event/addevent"], { target: "http://localhost:5000" })
   );
+  app.use(
+    proxy(["/api", "/event/getallevents"], { target: "http://localhost:5000" })
+  );
 };

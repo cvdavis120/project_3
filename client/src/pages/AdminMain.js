@@ -22,8 +22,10 @@ class AdminMain extends React.Component {
   componentDidMount() {
     API.getAllEvents()
     .then(res => {
-      return res
-    })
+      for (var i = 0; i < res.length; i++) {
+        this.props.dispatch(addAppointment(res[i]))
+      }
+    });
   }
 
   render() {

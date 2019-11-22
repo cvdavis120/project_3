@@ -1,23 +1,17 @@
 //UserInfo Reducer
 
 const userInfoReducerDefaultState = {
-  name: '',
-  status: '',
-  appointments: [],
-  contact: {
-    address: '',
-    phone: '',
-    email: ''
-  }
+    email: '',
+    password: '',
+    account_type: '',
+    firstName: '',
+    lastName: ''
 };
 
 export default (state = userInfoReducerDefaultState, action) => {
   switch (action.type) {
-    case 'Test':
-      return [
-        ...state,
-        action.userInfo
-      ];
+    case 'ADD_USER':
+      return action.currentUser;
     
     default: 
       return state;

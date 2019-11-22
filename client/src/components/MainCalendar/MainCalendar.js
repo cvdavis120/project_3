@@ -22,6 +22,7 @@ import {
 } from "@devexpress/dx-react-scheduler-material-ui";
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import API from "../../utils/API";
 
 const style = ({ palette }) => ({
   icon: {
@@ -86,6 +87,12 @@ class MainCalendar extends React.PureComponent {
           data.length > 0 ? data[data.length - 1].id + 1 : 0;
         data = [...data, { id: startingAddedId, ...added }];
         this.props.dispatch(addAppointment(data[startingAddedId - 1]));
+       
+        API.addEvent(data[startingAddedId - 1])
+          .then(res => {
+            console.log(res.data)
+          }
+        )
       }
       if (changed) {
         data = data.map(appointment =>

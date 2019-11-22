@@ -26,3 +26,7 @@ export const editAppointment = (id, updates) => ({
   id,
   updates
 });
+
+export const clearAppointments = () => ({
+  type: 'CLEAR_APPOINTMENTS'
+});

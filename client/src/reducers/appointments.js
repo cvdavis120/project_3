@@ -2,7 +2,6 @@
 
 
 const appointmentsReducerDefaultState = [];
-
 // [
 // {
 //   id: 1,
@@ -51,6 +50,8 @@ export default (state = appointmentsReducerDefaultState, action) => {
           return appointment;
         };
       });
+    case 'CLEAR_APPOINTMENTS':
+      return []
     default: 
       return state;
   }

@@ -14,7 +14,7 @@ export default {
   },
 
   addEvent: function(eventData) {
-    console.log(eventData)
+    // console.log(eventData)
     return axios.post("/api/event/addevent", eventData);
   },
 

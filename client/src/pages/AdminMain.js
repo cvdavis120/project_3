@@ -6,7 +6,7 @@ import CustDropdown from "../components/CustDropdown";
 import Retail from "../components/Retail";
 import MainCalendar from "../components/MainCalendar/MainCalendar";
 import { connect } from "react-redux";
-import { addAppointment } from "../actions/appointments";
+import { addAppointment, clearAppointments } from "../actions/appointments";
 import AdminNav from "../components/Nav/admin";
 import store from "../store/configureStore";
 import API from "../utils/API"
@@ -21,8 +21,19 @@ class AdminMain extends React.Component {
     // console.log("admin main component: ", { Component });
   }
 
+  componentWillMount() {
+    API.getAllEvents()
+    .then(res => {
+      // this.setState({ data: res.data })
+      this.props.dispatch(clearAppointments())
+      for (var i = 0; i < res.data.length; i++) {
+        this.props.dispatch(addAppointment(res.data[i]))
+        
+      }
+    });
+  }
+
   render() {
-    console.log("adminMain: state", this.state);
     return (
       <div>
         <AdminNav />
@@ -45,7 +56,6 @@ class AdminMain extends React.Component {
               appointmentsArray={this.state.appointments}
               onAppointmentAdd={appointment => {
                 this.props.dispatch(addAppointment(appointment));
-                console.log(appointment);
               }}
             />
           </Grid>

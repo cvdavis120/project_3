@@ -14,18 +14,11 @@ import API from "../utils/API"
 class AdminMain extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      appointments: ''
+    };
     // console.log("admin main store: ", { store });
     // console.log("admin main component: ", { Component });
-  }
-
-  componentDidMount() {
-    API.getAllEvents()
-    .then(res => {
-      for (var i = 0; i < res.length; i++) {
-        this.props.dispatch(addAppointment(res[i]))
-      }
-    });
   }
 
   render() {
@@ -49,6 +42,7 @@ class AdminMain extends React.Component {
           </Grid>
           <Grid item xs={12} sm={6}>
             <MainCalendar
+              appointmentsArray={this.state.appointments}
               onAppointmentAdd={appointment => {
                 this.props.dispatch(addAppointment(appointment));
                 console.log(appointment);
@@ -65,7 +59,8 @@ class AdminMain extends React.Component {
 }
 const mapStateToProps = (state, props) => {
   return {
-    adminProfile: state.adminProfile
+    adminProfile: state.adminProfile,
+    appointments: state.appointments
   };
 };
 export default connect(mapStateToProps)(AdminMain);

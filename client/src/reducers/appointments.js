@@ -3,7 +3,6 @@
 
 const appointmentsReducerDefaultState = [];
 
-
 // [
 // {
 //   id: 1,

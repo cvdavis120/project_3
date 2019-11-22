@@ -18,8 +18,7 @@ export default {
     return axios.post("/api/event/addevent", eventData);
   },
 
-  getAllEvents: function(eventData) {
-    console.log(eventData)
+  getAllEvents: function() {
     return axios.get("/api/event/getallevents")
   }
 

@@ -94,7 +94,7 @@ export default function Pricing() {
       <Container maxWidth="sm" component="main" className={classes.heroContent}>
         <Typography
           component="h1"
-          variant="h2"
+          variant="h5"
           align="center"
           color="textPrimary"
           gutterBottom

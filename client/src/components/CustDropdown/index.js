@@ -29,7 +29,7 @@ const options = [
 export default function SimpleListMenu() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const handleClickListItem = event => {
     setAnchorEl(event.currentTarget);
@@ -55,7 +55,7 @@ export default function SimpleListMenu() {
           onClick={handleClickListItem}
         >
           <ListItemText
-            primary="Select a Client or Trainer to view"
+            primary="View Clients & Trainers"
             secondary={options[selectedIndex]}
           />
         </ListItem>

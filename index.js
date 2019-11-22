@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 require("./models/Users");
 require("./models/Admin");
 require("./services/passport");
+require("./models/Event")
 
 const app = express();
 //pass into the function the address of the mongo instance

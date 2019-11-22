@@ -22,6 +22,7 @@ import {
 } from "@devexpress/dx-react-scheduler-material-ui";
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import API from "../../utils/API";
 
 const style = ({ palette }) => ({
   icon: {
@@ -57,7 +58,7 @@ const Content = withStyles(style, { name: "Content" })(
       {...restProps}
       appointmentData={appointmentData}
     >
-      <Link to={`/editappointment/${appointmentData.id}`}>
+      <Link to={`/editappointment/${appointmentData._id}`}>
         <h2>Schedule appointment</h2>
       </Link>
     </AppointmentTooltip.Content>
@@ -68,7 +69,7 @@ class MainCalendar extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      data: this.props.appointments,
+      data: [],
       currentDate: new Date()
     };
 
@@ -78,16 +79,35 @@ class MainCalendar extends React.PureComponent {
     };
   }
 
+  componentWillMount() {
+      API.getAllEvents()
+      .then(res => {
+        this.setState({ data: res.data })
+        for (var i = 0; i < res.data.length; i++) {
+          this.props.dispatch(addAppointment(res.data[i]))
+          
+        }
+      });
+    
+  }
+
   commitChanges({ added, changed, deleted }) {
     this.setState(state => {
       let { data } = state;
       if (added) {
         const startingAddedId =
-          data.length > 0 ? data[data.length - 1].id + 1 : 0;
+        data.length > 0 ? data[data.length - 1].id + 1 : 0;
         data = [...data, { id: startingAddedId, ...added }];
         this.props.dispatch(addAppointment(data[startingAddedId - 1]));
+       
+        API.addEvent(data[startingAddedId - 1])
+          .then(res => {
+            console.log(res.data)
+          }
+        )
       }
       if (changed) {
+        console.log(data);
         data = data.map(appointment =>
           changed[appointment.id]
             ? { ...appointment, ...changed[appointment.id] }
@@ -104,6 +124,7 @@ class MainCalendar extends React.PureComponent {
 
   render() {
     const { currentDate, data } = this.state;
+    console.log(data);
 
     return (
       <Paper>

@@ -31,12 +31,17 @@ module.exports = {
       .catch(err => res.json(err));
   },
   logInUser: function(req, res) {
-    console.log(req.body);
     // console.log("login user req data: ", req.body);
-    db.Admin.findOne({ email: req.body.email })
+    db.Admin.findOne({ email: req.body.username })
       .then(data => {
-        res.json(data);
-        console.log(data);
+        if (
+          data.email === req.body.username &&
+          data.password === req.body.password
+        ) {
+          res.json(data);
+        } else {
+          console.log("nooo");
+        }
       })
       .catch(err => res.status(422).json(err));
   }

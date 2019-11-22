@@ -16,8 +16,8 @@
     "path": "^0.12.7"
   },
   "scripts": {
-    "start": "node server.js",
-    "start:prod": "node server.js",
+    "start": "node index.js",
+    "start:prod": "node index.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
